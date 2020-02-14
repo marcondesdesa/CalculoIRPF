@@ -25,8 +25,7 @@ public class Main {
         return dAliquota;
     }
 
-    public static void main(String[] args) {
-
+    public static void CalculaIRPF(){
         Scanner leitura = new Scanner(System.in);
         double dRendaMensal = 0.00;
         int iQuantDep = 0;
@@ -34,7 +33,6 @@ public class Main {
         double dPensao = 0.00;
         double dValorImposto = 0.00;
         double dAliquotaImposto = 0.00;
-
 
         //Capturar os dados
         System.out.println("Informe os dados abaixo");
@@ -51,11 +49,43 @@ public class Main {
         if (dRendaMensal>0){
 
             //Calçular o Imposto
-            dValorImposto = (RetornaAliquota(dRendaMensal) * dRendaMensal);
-
-
+            dAliquotaImposto = RetornaAliquota(dRendaMensal);
+            dValorImposto = ((dAliquotaImposto/100.0) * dRendaMensal);
         }
-        System.out.print("Valor do Imposto...."+ dValorImposto);
+
+        String sSaida = String.format("Valor do Imposto ( %3.2f ).... R$ %6.2f",dAliquotaImposto,dValorImposto);
+        System.out.print(sSaida);
+
+
+    }
+
+    public static int LerValorInt(){
+        int iValor  = 0;
+        try{
+            Scanner leitura = new Scanner(System.in);
+            iValor  = leitura.nextInt();
+        }
+
+        catch (Exception e) {
+            iValor = -1;
+        }
+    }
+
+
+    public static int RetornaDivisores(){
+        int iDivisor = 0;
+        double dResto = 0.00;
+        int iNumero = LerValorInt();
+        if (iNumero>-1) {
+            dResto = (iDivisor % 2);
+        }
+        return iDivisor;
+
+    }
+
+    public static void main(String[] args) {
+        //Exercício 1
+        CalculaIRPF();
 
     }
 
